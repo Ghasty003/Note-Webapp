@@ -1,6 +1,14 @@
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase";
+
 const Home: React.FC = () => {
     return (
-        <p>Hello world</p>
+        <div>
+            <p>Hello world</p>
+            <button onClick={() => {
+                signOut(auth)
+            }}>Click</button>
+        </div>
     );
 }
 
