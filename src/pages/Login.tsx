@@ -1,8 +1,9 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FiEyeOff } from "react-icons/fi";
 import { AiOutlineMail } from "react-icons/ai";
 import { IoEyeOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { auth } from "../../firebase";
 
 const Login: React.FC = () => {
 
@@ -23,8 +24,52 @@ const Login: React.FC = () => {
         passwordInput.current.type = "password";
     }
 
-    const handleLogin = (e: React.FormEvent) => {
+    useEffect(() => {
+
+        p2.current.addEventListener("click", () => {
+            passwordInput.current.focus();
+        });
+
+        p1.current.addEventListener("click", () => {
+            emailInput.current.focus();
+        })
+
+        const input = document.querySelectorAll<HTMLInputElement>("input");
+        input.forEach((ele, index) => {
+            ele.addEventListener("focus", () => {
+                if (index === 0) {
+                    if(p1.current.classList.contains("top-1")) {
+                        p1.current.classList.replace("top-1", "-top-2");
+                        p1.current.classList.add("text-xs");
+                    }
+                }
+
+                if (index === 1) {
+                    if(p2.current.classList.contains("top-1")) {
+                        p2.current.classList.replace("top-1", "-top-2");
+                        p2.current.classList.add("text-xs");
+                    }
+                }
+            })
+
+            ele.addEventListener("blur", () => {
+                if(index === 0 && input[0].value == "" && p1.current.classList.contains("-top-2")) {
+                    p1.current.classList.replace("-top-2", "top-1");
+                    p1.current.classList.remove("text-xs");
+                }
+
+                if(index === 1 && input[1].value == "" && p2.current.classList.contains("-top-2")) {
+                    p1.current.classList.replace("-top-2", "top-1");
+                    p1.current.classList.remove("text-xs");
+                }
+            });
+        })
+    }, []);
+
+    const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        
     }
 
     return (

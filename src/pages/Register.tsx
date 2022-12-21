@@ -3,6 +3,9 @@ import { FiUser, FiEyeOff } from "react-icons/fi";
 import { AiOutlineMail } from "react-icons/ai";
 import { IoEyeOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth, db } from "../../firebase";
+import { doc, setDoc } from "firebase/firestore";
 
 
 const Register: React.FC = () => {
@@ -23,10 +26,6 @@ const Register: React.FC = () => {
     const hidePassword = () => {
         setSeePass(false);
         passwordInput.current.type = "password";
-    }
-
-    const handleRegister = (e: React.FormEvent) => {
-        e.preventDefault();
     }
 
     useEffect(() => {
@@ -86,6 +85,31 @@ const Register: React.FC = () => {
             });
         })
     }, []);
+    
+    const handleRegister = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        const event = e.target as HTMLFormElement;
+
+        const userName = (event[0] as HTMLInputElement).value;
+        const email = (event[1] as HTMLInputElement).value;
+        const password = (event[2] as HTMLInputElement).value;
+
+        try {
+            const result = await createUserWithEmailAndPassword(auth, email, password);
+
+            await updateProfile(result.user, {
+                displayName: userName
+            });
+
+            await setDoc(doc(db, "users", result.user.uid), {
+                email, password, userName
+            });
+
+        } catch(e: unknown) {
+            console.log((e as Error).message);
+        }
+    }
 
     return (
         <div className='flex justify-center items-center py-16'>
