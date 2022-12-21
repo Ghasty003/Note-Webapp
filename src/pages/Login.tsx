@@ -2,8 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 import { FiEyeOff } from "react-icons/fi";
 import { AiOutlineMail } from "react-icons/ai";
 import { IoEyeOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 const Login: React.FC = () => {
 
@@ -66,9 +67,22 @@ const Login: React.FC = () => {
         })
     }, []);
 
+    const navigate = useNavigate();
+
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
 
+        const event = e.target as HTMLFormElement;
+
+        const email = (event[0] as HTMLInputElement).value;
+        const password = (event[1] as HTMLInputElement).value;
+
+        try {
+            const result = await signInWithEmailAndPassword(auth, email, password);
+            navigate("/");
+        } catch(e: unknown) {
+            console.log((e as Error).message);
+        }
         
     }
 
