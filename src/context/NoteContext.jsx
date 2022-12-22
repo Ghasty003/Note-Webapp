@@ -1,5 +1,5 @@
 import { doc, onSnapshot } from "firebase/firestore";
-import React, { createContext, useEffect, useContext } from "react";
+import React, { createContext, useEffect, useContext, useState } from "react";
 import { db } from "../../firebase";
 import AuthContext from "./AuthContext";
 
@@ -9,10 +9,13 @@ export function NoteContextProvider({ children }) {
 
     const { currentUser } = useContext(AuthContext);
 
+    const [notes, setNotes] = useState([]);
+
     useEffect(() => {
         const getNotes = () => {
             const unsub = onSnapshot(doc(db, "usersNote", currentUser.uid), snapshot => {
-                console.log(snapshot.data()?.notes)
+                setNotes(snapshot.data()?.notes);
+                // console.log(snapshot.data()?.notes, "ordinary")
             })
 
             return () => {
@@ -23,8 +26,14 @@ export function NoteContextProvider({ children }) {
        currentUser?.uid && getNotes();
     }, [currentUser?.uid]);
 
+    // console.log(notes, "from notes")
+
+    notes.forEach(item => {
+        console.log(item.title)
+    })
+
     return (
-        <NoteContext.Provider value={{}}>
+        <NoteContext.Provider value={{ notes }}>
             { children }
         </NoteContext.Provider>
     )
