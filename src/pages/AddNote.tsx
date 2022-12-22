@@ -1,9 +1,23 @@
-import React from "react";
+import { doc, setDoc } from "firebase/firestore";
+import React, { useContext } from "react";
+import { db } from "../../firebase";
+import AuthContext from "../context/AuthContext";
 
 const AddNote: React.FC = () => {
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const { currentUser } = useContext(AuthContext);
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        const event = e.target as HTMLFormElement;
+        const title = (event[0] as HTMLInputElement).value;
+        const content = (event[1] as HTMLInputElement).value;
+
+        await setDoc(doc(db, "usersNote", currentUser.uid), {
+            title,
+            content
+        })
     }
 
     return (
