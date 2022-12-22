@@ -21,7 +21,7 @@ const Home: React.FC = () => {
 
     return (
         <div className="p-10">
-            <div className="flex w-full justify-between md:justify-around px-5 md:px-20 mb-12">
+            <div className="flex w-full justify-between md:justify-around px-0 md:px-20 mb-12">
                 <button onClick={() => navigate("/new")}
                  className="bg-primary rounded-md p-3 shadow-lg text-white font-bold">Add new note</button>
                 <button className="bg-primary rounded-md p-3 shadow-lg text-white font-bold" onClick={() => {

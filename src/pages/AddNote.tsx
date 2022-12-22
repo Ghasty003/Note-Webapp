@@ -39,20 +39,20 @@ const AddNote: React.FC = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit} className="bg-primary h-fit p-10 w-[500px] absolute left-[50%] translate-x-[-50%] top-[20%]
+        <form onSubmit={handleSubmit} className="bg-primary h-fit p-10 sm:p-10 w-[320px] sm:w-[500px] absolute left-[50%] translate-x-[-50%] top-[20%]
             rounded-2xl shadow-xl">
             <div className="flex flex-col gap-2">
                 <label className="text-xl" htmlFor="title">Title: </label>
-                <input className="w-[300px] rounded-xl outline-none px-3 py-1" type="text" id="title" />
+                <input className="sm:w-[300px] rounded-xl outline-none px-3 py-1" type="text" id="title" />
             </div>
 
             <div className="flex flex-col gap-2 my-10">
                 <label className="text-xl" htmlFor="content">Content: </label>
-                <textarea className="w-[300px] rounded-xl outline-none px-3 py-5" id="content" />
+                <textarea className="sm:w-[300px] rounded-xl outline-none px-3 py-5" id="content" />
             </div>
 
             {
-                err && <p className='text-center mt-2 text-red-600'>Title or Content can't be empty.</p>
+                err && <p className='text-center mb-14 mt-2 text-red-600'>Title or Content can't be empty.</p>
             }
 
             {
