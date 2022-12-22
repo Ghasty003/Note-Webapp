@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { FiUser, FiEyeOff } from "react-icons/fi";
 import { AiOutlineMail } from "react-icons/ai";
 import { IoEyeOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db } from "../../firebase";
 import { doc, setDoc } from "firebase/firestore";
@@ -85,6 +85,8 @@ const Register: React.FC = () => {
             });
         })
     }, []);
+
+    const navigate = useNavigate();
     
     const handleRegister = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -105,6 +107,12 @@ const Register: React.FC = () => {
             await setDoc(doc(db, "users", result.user.uid), {
                 email, password, userName
             });
+
+            await setDoc(doc(db, "usersNote", result.user.uid), {
+                notes: []
+            });
+
+            navigate("/");
 
         } catch(e: unknown) {
             console.log((e as Error).message);

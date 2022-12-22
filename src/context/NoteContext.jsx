@@ -12,7 +12,7 @@ export function NoteContextProvider({ children }) {
     useEffect(() => {
         const getNotes = () => {
             const unsub = onSnapshot(doc(db, "usersNote", currentUser.uid), snapshot => {
-                console.log(snapshot.data().notes)
+                console.log(snapshot.data()?.notes)
             })
 
             return () => {
@@ -20,8 +20,8 @@ export function NoteContextProvider({ children }) {
             }
        }
 
-       currentUser.uid && getNotes();
-    }, [currentUser.uid]);
+       currentUser?.uid && getNotes();
+    }, [currentUser?.uid]);
 
     return (
         <NoteContext.Provider value={{}}>
