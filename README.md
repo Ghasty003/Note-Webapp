@@ -19,7 +19,7 @@ Note web application.
 
 ## 🛠️ Installation Steps
 
-1. [Fork](https://github.com/ghasty003/Countdown-timer/fork) the project. Click on the <a href="https://github.com/ghasty003/Countdown-timer/fork"><img src="https://i.imgur.com/G4z1kEe.png" height="15" width="15"></a> icon in the top right to get started
+1. [Fork](https://github.com/ghasty003/Note-webapp/fork) the project. Click on the <a href="https://github.com/ghasty003/Note-webapp/fork"><img src="https://i.imgur.com/G4z1kEe.png" height="15" width="15"></a> icon in the top right to get started
 2. Clone the project, you can use the following command:
 
 ```bash
