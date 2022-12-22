@@ -1,10 +1,11 @@
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
+import Card from "../components/Card";
 
 const Home: React.FC = () => {
     return (
         <div>
-            <p>Hello world</p>
+            <Card />
             <button onClick={() => {
                 signOut(auth)
             }}>Click</button>
