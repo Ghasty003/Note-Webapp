@@ -1,4 +1,4 @@
-import { doc, setDoc } from "firebase/firestore";
+import { arrayUnion, doc, setDoc, updateDoc } from "firebase/firestore";
 import React, { useContext } from "react";
 import { db } from "../../firebase";
 import AuthContext from "../context/AuthContext";
@@ -14,10 +14,12 @@ const AddNote: React.FC = () => {
         const title = (event[0] as HTMLInputElement).value;
         const content = (event[1] as HTMLInputElement).value;
 
-        await setDoc(doc(db, "usersNote", currentUser.uid), {
-            title,
-            content
-        })
+        await updateDoc(doc(db, "usersNote", currentUser.uid), {
+            notes: arrayUnion({
+                title,
+                content
+            })
+        });
     }
 
     return (
