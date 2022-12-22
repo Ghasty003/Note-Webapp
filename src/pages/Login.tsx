@@ -60,8 +60,8 @@ const Login: React.FC = () => {
                 }
 
                 if(index === 1 && input[1].value == "" && p2.current.classList.contains("-top-2")) {
-                    p1.current.classList.replace("-top-2", "top-1");
-                    p1.current.classList.remove("text-xs");
+                    p2.current.classList.replace("-top-2", "top-1");
+                    p2.current.classList.remove("text-xs");
                 }
             });
         })
