@@ -29,7 +29,7 @@ git clone https://github.com/<your-github-username>/Note-web-app
 3. Navigate to the project directory
 
 ```bash
-cd Countdown-timer
+cd Note-webapp
 ```
 
 4. Install dependencies with npm install
