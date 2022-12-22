@@ -10,7 +10,7 @@ export function NoteContextProvider({ children }) {
     const { currentUser } = useContext(AuthContext);
 
     useEffect(() => {
-       const getNotes = () => {
+        const getNotes = () => {
             const unsub = onSnapshot(doc(db, "usersNote", currentUser.uid), snapshot => {
                 console.log(snapshot.data().notes)
             })
