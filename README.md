@@ -23,7 +23,7 @@ Note web application.
 2. Clone the project, you can use the following command:
 
 ```bash
-git clone https://github.com/<your-github-username>/Note-web-app
+git clone https://github.com/<your-github-username>/Note-webapp
 ```
 
 3. Navigate to the project directory
