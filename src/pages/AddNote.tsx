@@ -1,11 +1,17 @@
 import { arrayUnion, doc, setDoc, updateDoc } from "firebase/firestore";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { db } from "../../firebase";
 import AuthContext from "../context/AuthContext";
 
 const AddNote: React.FC = () => {
 
     const { currentUser } = useContext(AuthContext);
+
+    const [err, setErr] = useState(false);
+    const [save, setSave] = useState(false);
+
+    const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -14,12 +20,22 @@ const AddNote: React.FC = () => {
         const title = (event[0] as HTMLInputElement).value;
         const content = (event[1] as HTMLInputElement).value;
 
+        if (title === "" || content === "") {
+            setErr(true);
+            return;
+        }
+
+        setErr(false);
+        setSave(true);
+
         await updateDoc(doc(db, "usersNote", currentUser.uid), {
             notes: arrayUnion({
                 title,
                 content
             })
         });
+
+        navigate("/");
     }
 
     return (
@@ -35,7 +51,17 @@ const AddNote: React.FC = () => {
                 <textarea className="w-[300px] rounded-xl outline-none px-3 py-5" id="content" />
             </div>
 
-            <button className="absolute right-12 bg-blue-500 p-2 bottom-4 rounded-lg drop-shadow-2xl">Save</button>
+            {
+                err && <p className='text-center mt-2 text-red-600'>Title or Content can't be empty.</p>
+            }
+
+            {
+                save ? <button className="absolute right-12 bg-blue-300 p-2 bottom-4 rounded-lg drop-shadow-2xl" disabled>
+                            Saving...
+                        </button>
+                    : <button className="absolute right-12 bg-blue-500 p-2 bottom-4 rounded-lg drop-shadow-2xl">Save</button>
+                
+            }
         </form>
     )
 }

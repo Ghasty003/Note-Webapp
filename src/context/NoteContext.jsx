@@ -15,7 +15,6 @@ export function NoteContextProvider({ children }) {
         const getNotes = () => {
             const unsub = onSnapshot(doc(db, "usersNote", currentUser.uid), snapshot => {
                 setNotes(snapshot.data()?.notes);
-                // console.log(snapshot.data()?.notes, "ordinary")
             })
 
             return () => {
@@ -25,12 +24,6 @@ export function NoteContextProvider({ children }) {
 
        currentUser?.uid && getNotes();
     }, [currentUser?.uid]);
-
-    // console.log(notes, "from notes")
-
-    notes.forEach(item => {
-        console.log(item.title)
-    })
 
     return (
         <NoteContext.Provider value={{ notes }}>
