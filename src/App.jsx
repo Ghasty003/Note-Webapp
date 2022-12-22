@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import AuthContext from "./context/AuthContext";
+import AddNote from "./pages/AddNote";
 
 function App () {
 
@@ -29,6 +30,7 @@ function App () {
           } />
           <Route path="register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/new" element={<AddNote />} />
         </Route>
         </Routes>
     </div>
