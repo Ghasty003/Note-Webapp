@@ -11,14 +11,6 @@ Note web application.
 
 > ![Vite + React + TS - Google Chrome 12_22_2022 11_18_03 PM](https://user-images.githubusercontent.com/85039185/209236320-34096879-3091-4f10-bd11-602859497248.png)
 
-# Countdown-timer
-2023 countdown timer with awesome animations and 3D effects.
-
-## Preview
-> <img width="100%" src="https://user-images.githubusercontent.com/85039185/208266150-ee2c0f7f-eba4-4163-a08b-1c803908ed3a.png" />
-
-## Contributing
-<p>Any contribution is welcomed.</p>
 
 ## 👌🏾 What you have to do to contribute
 
