@@ -30,7 +30,9 @@ function App () {
           } />
           <Route path="register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/new" element={<AddNote />} />
+          <Route path="/new" element={<ProtectedRoute>
+            <AddNote />
+          </ProtectedRoute>} />
         </Route>
         </Routes>
     </div>
